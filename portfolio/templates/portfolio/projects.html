@@ -1,0 +1,102 @@
+{% extends "portfolio/layout.html" %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/projects.css' %}" />
+{% endblock %} 
+{% block script %}
+<script>
+  function open_accordion() {
+    var details = document.getElementById("details");
+    var toggleIcon = document.getElementById("toggle-icon");
+    
+    if (details.style.display === "none") {
+      toggleIcon.innerHTML = '<i style="margin-top: 2px; margin-right: 5px;" class="fa fa-minus"></i>Less Details';
+      details.style.display = "block";
+      display.style.width = "100%";
+    } else{
+      details.style.display = "none";
+      toggleIcon.innerHTML = '<i style="margin-top: 2px; margin-right: 5px;" class="fa fa-plus"></i>More Details';
+    }
+  }
+</script>
+{% endblock %} 
+{% block name %} {{ name }} {% endblock %}
+{% block body %}
+{% if user.is_authenticated %}              
+{% for project in page_projects %}
+<div class="container1" style="height: 722px;">
+  <h1 class="title">{{ project.title }}</h1>
+  <span class="desc">{{ project.short_description }}</span>
+  <div class="alike">      
+    <i class="fa fa-gear alike" onclick="window.location.href='{% url 'edit_project' title=project.title %}'" style="top: 7%;
+    right: 3%;
+    font-size: 36px;
+    position: absolute;
+    "></i>           
+    </div> 
+  <video class="video" controls="controls" preload="preload">
+    <source src="{{ project.media.url }}" type="video/mp4" />
+  </video>
+  <br>
+  <button class="alike button Anchor" style="width: 80%; " onclick="open_accordion()">
+    <span id="toggle-icon" style="display: flex;"><i style="margin-top: 2px; margin-right: 5px;" class="fa fa-plus"></i>More Details</span>
+  </button>
+</div>    
+{% for title, detail in details.items %}
+{% if title == project.title %}
+<div id="details" style="width: 80%; font-weight: normal; display: none; border: 1px solid black; padding: 1%; padding-inline-start: 2%;">
+ {{ detail | safe }}
+</div>
+{% else %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+<div class="alike">                 
+  <button class="btn btn-warning" onclick="window.location.href='{% url 'add_project' %}'" style="position: absolute;
+  top: 11%;
+  right: 16%;">Add Project</button>
+  </div>
+  {% else %}
+  {% for project in page_projects %}
+  <div class="container1" style="height: 722px;">
+    <h1 class="title">{{ project.title }}</h1>
+    <span class="desc">{{ project.short_description }}</span>
+    <video class="video" controls="controls" preload="preload">
+      <source src="{{ project.media.url }}" type="video/mp4" />
+    </video>
+    <br>
+    <button class="alike button Anchor" style="width: 80%;" onclick="open_accordion()">
+      <span id="toggle-icon" style="display: flex;"><i style="margin-top: 2px; margin-right: 5px;" class="fa fa-plus"></i>More Details</span>
+    </button>
+  </div>
+  {% for title, detail in details.items %}
+  {% if title == project.title %}
+  <div id="details" style="width: 80%; font-weight: normal; display: none; border: 1px solid black; padding: 1%; padding-inline-start: 2%;">
+    {{ detail | safe }}
+   </div>
+  {% else %}
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+{% endif %}
+{% if page_projects.has_previous %}
+<svg
+  onclick="window.location.href='?page={{ page_projects.previous_page_number }}'"
+  viewBox="0 0 1024 1024"  class="left-arrow"
+>
+  <path class="alike" d="M658 708l-60 60-256-256 256-256 60 60-196 196z"></path>
+</svg>
+{% endif %} 
+{% if page_projects.has_next %}
+<svg
+  onclick="window.location.href='?page={{ page_projects.next_page_number }}'"
+  viewBox="0 0 1024 1024"
+  class="right-arrow"
+>
+  <path
+    class="alike"
+    d="M366 708l196-196-196-196 60-60 256 256-256 256z"
+  ></path>
+</svg>
+{% endif %} 
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "portfolio/layout.html" %} {% load static %} {% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/about.css' %}" />
+{% endblock %} {% block script %} {% endblock %}
+{% block name %} {{ name }} {% endblock %}
+{% block body %}
+{% if user.is_authenticated %}               
+<div class="container1">
+    <div class="hero">
+      <div class="hero-text-container">
+        <h1 class="mission Section-Heading">{{ profile.mission }}</h1>
+        <span class="about Section-Text">
+          <span> {{ profile.about }} </span>
+        </span>
+        <div class="cta-btn-container">
+          <button
+            onclick="window.location.href='{% url 'resume' %}'"
+            class="cta-btn Anchor button"
+          >
+            <span class="alike text1">RESUME</span>
+          </button>
+          <button
+            onclick="window.location.href='{% url 'projects' %}'"
+            class="alike cta-btn1 button Anchor"
+          >
+            PROJECTS
+          </button>
+        </div>
+      </div>
+      <img alt="image" src="{{ profile.picture.url }}" class="profile" />
+    </div>
+  </div>        
+  <div class="alike">
+    <i class="fa fa-gear alike" onclick="window.location.href='{% url 'edit_profile' %}'" style="top: 10%;
+  right: 10%;
+  width: 96px;
+  height: 96px;
+  font-size: 36px;
+  position: absolute;
+  "></i>
+  </div>               
+  
+  {% else %}
+  <div class="container1">
+    <div class="hero">
+      <div class="hero-text-container">
+        <h1 class="mission Section-Heading">{{ profile.mission }}</h1>
+        <span class="about Section-Text">
+          <span> {{ profile.about }} </span>
+        </span>
+        <div class="cta-btn-container">
+          <button
+            onclick="window.location.href='{% url 'resume' %}'"
+            class="cta-btn Anchor button"
+          >
+            <span class="alike text1">RESUME</span>
+          </button>
+          <button
+            onclick="window.location.href='{% url 'projects' %}'"
+            class="alike cta-btn1 button Anchor"
+          >
+            PROJECTS
+          </button>
+        </div>
+      </div>
+      <img alt="image" src="{{ profile.picture.url }}" class="profile" />
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

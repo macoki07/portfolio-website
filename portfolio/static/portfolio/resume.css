@@ -1,0 +1,79 @@
+.container1 {
+    width: 100%;
+    /* height: 822px; */
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+  }
+  .card2-card {
+    width: 100%;
+    height: 506px;
+    display: flex;
+    max-width: 1400px;
+    box-shadow: 4px 4px 10px 0px rgba(18, 18, 18, 0.1);
+    transition: 0.3s;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .card2-card:hover {
+    transform: scale(1.02);
+  }
+  .card2-container {
+    width: 578px;
+    display: flex;
+    align-items: center;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    flex-direction: column;
+    padding-bottom: 32px;
+    justify-content: flex-start;
+  }
+  .card2-container1 {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .card2-text {
+    margin-bottom: 32px;
+  }
+  .card2-text1 {
+    color: var(--dl-color-gray-500);
+    padding: var(--dl-space-space-doubleunit);
+    font-size: 1.25rem;
+    margin-bottom: 0px;
+  }
+  
+  .alike:hover{
+    color: gray;
+  }
+  .alike{    color: black;
+  }
+  .desc ul{
+    margin-left: 1%;
+  }
+  .card2-root-class-name3 {
+    top: 82px;
+    left: 100px;
+    position: absolute;
+    align-self: center;
+  }
+  @media(max-width: 991px) {
+    .card2-card {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  @media(max-width: 767px) {
+    .card2-card {
+      flex-direction: column;
+    }
+  }
+
+  

@@ -1,0 +1,19 @@
+{% extends "portfolio/layout.html" %} {% load static %} {% block css %}
+{% endblock %} {% block script %} {% endblock %}
+{% block name %} {{ name }} {% endblock %} {% block body %}
+{% if user.is_authenticated %}     
+<br>          
+<h1>Update Section</h1>
+	<br/>
+	<form action="" method=POST enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<br/>
+		<input type="submit" name="action" value="Update" class="btn btn-warning">
+		<input type="submit" name="action" value="Delete" class="btn btn-danger" style="margin-left: 54%;">
+		</form>
+		
+{% else %}
+<h1>Unauthorized Access</h1>
+{% endif %}
+{% endblock %}

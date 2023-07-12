@@ -1,0 +1,63 @@
+{% extends "portfolio/layout.html" %}
+{% load static %} 
+{% block css %}
+<link rel="stylesheet" href="{% static 'portfolio/resume.css' %}" />
+{% endblock %}
+
+{% block script %} 
+{% endblock %} 
+{% block name %} {{ name }} {% endblock %}
+{% block body %}
+
+  {% if user.is_authenticated %}  
+  {% for title, description in sections.items %}
+  <div class="container1" style="height: 600px;">
+      <div class="card2-card card2-root-class-name3">
+        <div class="card2-container">
+          <div class="card2-container1">
+            <h1 class="card2-text">
+              <div class="alike">                 
+                <i class="fa fa-gear alike" onclick="window.location.href='{% url 'edit_section' title=title %}'" style="top: 1%;
+                left: 1%;
+                font-size: 36px;
+                position: absolute;
+                "></i>   
+                </div>  
+              <span>{{ title }}</span>
+            </h1>
+          </div>
+          </div>
+        <span class="card2-text1">
+          <span>
+            {{ description | safe }}
+          </span>
+        </span>
+      </div>
+  </div>
+  {% endfor %}                       
+  <div class="alike">                 
+    <button class="btn btn-warning" onclick="window.location.href='{% url 'add_section' %}'" style="position: absolute;
+    top: 11%;
+    right: 16%;">Add Section</button>
+  </div> 
+  {% else %}
+  {% for title, description in sections.items %}
+<div class="container1" style="height: 600px;">
+    <div class="card2-card card2-root-class-name3">
+      <div class="card2-container">
+        <div class="card2-container1">
+          <h1 class="card2-text">
+            <span>{{ title }}</span>
+          </h1>
+        </div>
+      </div>
+      <span class="card2-text1">
+        <span>
+          {{ description | safe }}
+        </span>
+      </span>
+   </div>
+  </div>
+  {% endfor %}  
+{% endif %}
+{% endblock %}
