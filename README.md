@@ -14,7 +14,7 @@ Watch a video walkthrough of the website [HERE](https://youtu.be/FfW5DDpolrs)!
 
 ```
 # Create new migrations
-python3 manage.py makemigration
+python3 manage.py makemigrations
 
 # Migrate
 python3 manage.py migrate
